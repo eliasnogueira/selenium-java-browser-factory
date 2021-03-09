@@ -1,0 +1,12 @@
+.settings/
+
+# Intellij
+.idea/
+*.iml
+
+# Maven
+logs/
+target/
+
+# Allure
+.allure
