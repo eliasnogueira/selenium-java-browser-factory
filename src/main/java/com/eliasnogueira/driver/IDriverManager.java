@@ -22,11 +22,13 @@
  * SOFTWARE.
  */
 
-package com.eliasnogueira.driver.factory;
+package com.eliasnogueira.driver;
 
 import org.openqa.selenium.WebDriver;
 
-public interface DriverManager {
+public interface IDriverManager<T> {
 
     WebDriver createDriver();
+
+    T getOptions();
 }
