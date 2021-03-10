@@ -24,19 +24,30 @@
 
 package com.eliasnogueira.driver.factory.manager;
 
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.IDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
+import static com.eliasnogueira.config.ConfigurationManager.configuration;
 import static io.github.bonigarcia.wdm.config.DriverManagerType.EDGE;
 
-public class EdgeDriverManager implements DriverManager {
+public class EdgeDriverManager implements IDriverManager<EdgeOptions> {
 
     @Override
     public WebDriver createDriver() {
         WebDriverManager.getInstance(EDGE).setup();
 
-        return new EdgeDriver();
+        return new EdgeDriver(getOptions());
+    }
+
+    @Override
+    public EdgeOptions getOptions() {
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.addArguments("--start-maximized");
+        edgeOptions.setHeadless(configuration().headless());
+
+        return edgeOptions;
     }
 }

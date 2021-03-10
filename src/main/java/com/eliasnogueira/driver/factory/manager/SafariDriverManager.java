@@ -24,16 +24,20 @@
 
 package com.eliasnogueira.driver.factory.manager;
 
-import com.eliasnogueira.driver.exceptions.BrowserNotSupportedException;
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.IDriverManager;
+import com.eliasnogueira.exceptions.BrowserNotSupportedException;
+import com.eliasnogueira.exceptions.HeadlessNotSupportedException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
+import static com.eliasnogueira.config.ConfigurationManager.configuration;
 import static io.github.bonigarcia.wdm.config.DriverManagerType.SAFARI;
-import static org.apache.commons.lang3.SystemUtils.*;
+import static java.lang.Boolean.TRUE;
+import static org.apache.commons.lang3.SystemUtils.IS_OS_MAC;
 
-public class SafariDriverManager implements DriverManager {
+public class SafariDriverManager implements IDriverManager<SafariOptions> {
 
     @Override
     public WebDriver createDriver() {
@@ -41,6 +45,17 @@ public class SafariDriverManager implements DriverManager {
                 BrowserNotSupportedException("Safari is not supported on" + System.getProperty("os.name"));
 
         WebDriverManager.getInstance(SAFARI).setup();
-        return new SafariDriver();
+        return new SafariDriver(getOptions());
+    }
+
+    @Override
+    public SafariOptions getOptions() {
+        SafariOptions safariOptions = new SafariOptions();
+        safariOptions.setAutomaticInspection(false);
+
+        if (TRUE.equals(configuration().headless()))
+            throw new HeadlessNotSupportedException();
+
+        return safariOptions;
     }
 }

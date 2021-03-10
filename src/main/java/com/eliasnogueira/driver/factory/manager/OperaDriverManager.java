@@ -24,19 +24,36 @@
 
 package com.eliasnogueira.driver.factory.manager;
 
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.IDriverManager;
+import com.eliasnogueira.exceptions.HeadlessNotSupportedException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 
+import static com.eliasnogueira.config.ConfigurationManager.configuration;
 import static io.github.bonigarcia.wdm.config.DriverManagerType.OPERA;
+import static java.lang.Boolean.TRUE;
 
-public class OperaDriverManager implements DriverManager {
+public class OperaDriverManager implements IDriverManager<OperaOptions> {
 
     @Override
     public WebDriver createDriver() {
         WebDriverManager.getInstance(OPERA).setup();
 
-        return new OperaDriver();
+        return new OperaDriver(getOptions());
+    }
+
+    @Override
+    public OperaOptions getOptions() {
+        OperaOptions operaOptions = new OperaOptions();
+        operaOptions.addArguments("--start-maximized");
+        operaOptions.addArguments("--disable-infobars");
+        operaOptions.addArguments("--disable-notifications");
+
+        if (TRUE.equals(configuration().headless()))
+            throw new HeadlessNotSupportedException();
+
+        return operaOptions;
     }
 }

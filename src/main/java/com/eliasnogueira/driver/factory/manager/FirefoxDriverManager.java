@@ -24,19 +24,30 @@
 
 package com.eliasnogueira.driver.factory.manager;
 
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.IDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
+import static com.eliasnogueira.config.ConfigurationManager.configuration;
 import static io.github.bonigarcia.wdm.config.DriverManagerType.FIREFOX;
 
-public class FirefoxDriverManager implements DriverManager {
+public class FirefoxDriverManager implements IDriverManager<FirefoxOptions> {
 
     @Override
     public WebDriver createDriver() {
         WebDriverManager.getInstance(FIREFOX).setup();
 
-        return new FirefoxDriver();
+        return new FirefoxDriver(getOptions());
+    }
+
+    @Override
+    public FirefoxOptions getOptions() {
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--start-maximized");
+        firefoxOptions.setHeadless(configuration().headless());
+
+        return firefoxOptions;
     }
 }
