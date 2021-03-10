@@ -60,12 +60,12 @@ public class DriverFactory {
                 driver = new IEDriverManager().createDriver();
                 break;
             default:
-                throw new BrowserNotSupportedException(browser + " is not recognized!");
+                throw new BrowserNotSupportedException(browser);
         }
         return driver;
     }
 
     public enum BrowserList {
-        CHROME, FIREFOX, EDGE, SAFARI, OPERA, IE;
+        CHROME, FIREFOX, EDGE, SAFARI, OPERA, IE
     }
 }

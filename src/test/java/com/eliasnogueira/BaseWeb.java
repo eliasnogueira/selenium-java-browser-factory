@@ -25,11 +25,12 @@
 package com.eliasnogueira;
 
 import com.eliasnogueira.driver.config.Configuration;
-import com.eliasnogueira.driver.config.ConfigurationManager;
 import com.eliasnogueira.driver.factory.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+
+import static com.eliasnogueira.driver.config.ConfigurationManager.configuration;
 
 public class BaseWeb {
 
@@ -38,9 +39,7 @@ public class BaseWeb {
 
     @BeforeEach
     public void preCondition() {
-        configuration = ConfigurationManager.getConfiguration();
-
-        driver = new DriverFactory().createInstance(configuration.browser());
+        driver = new DriverFactory().createInstance(configuration().browser());
         driver.get(configuration.url());
     }
 

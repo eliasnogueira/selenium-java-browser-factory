@@ -24,15 +24,15 @@
 
 package com.eliasnogueira.driver.config;
 
-import org.aeonbits.owner.ConfigCache;
+import static org.aeonbits.owner.ConfigCache.getOrCreate;
 
 public class ConfigurationManager {
 
     private ConfigurationManager() {
     }
 
-    public static Configuration getConfiguration() {
-        return ConfigCache.getOrCreate(Configuration.class);
+    public static Configuration configuration() {
+        return getOrCreate(Configuration.class);
     }
 }
 
