@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.eliasnogueira.driver.exceptions;
+package com.eliasnogueira.exceptions;
 
 public class BrowserNotSupportedException extends IllegalStateException {
 
