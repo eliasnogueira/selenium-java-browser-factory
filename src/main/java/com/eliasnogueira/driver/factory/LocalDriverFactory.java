@@ -24,23 +24,21 @@
 
 package com.eliasnogueira.driver.factory;
 
-import com.eliasnogueira.driver.exceptions.BrowserNotSupportedException;
 import com.eliasnogueira.driver.factory.manager.ChromeDriverManager;
 import com.eliasnogueira.driver.factory.manager.EdgeDriverManager;
 import com.eliasnogueira.driver.factory.manager.FirefoxDriverManager;
-import com.eliasnogueira.driver.factory.manager.IEDriverManager;
 import com.eliasnogueira.driver.factory.manager.OperaDriverManager;
 import com.eliasnogueira.driver.factory.manager.SafariDriverManager;
+import com.eliasnogueira.exceptions.BrowserNotSupportedException;
 import org.openqa.selenium.WebDriver;
 
-public class DriverFactory {
+public class LocalDriverFactory {
 
     public WebDriver createInstance(String browser) {
         WebDriver driver;
-        BrowserList browserType = BrowserList.valueOf(browser.toUpperCase());
+        Browsers browserToCreate = Browsers.valueOf(browser.toUpperCase());
 
-        switch (browserType) {
-
+        switch (browserToCreate) {
             case CHROME:
                 driver = new ChromeDriverManager().createDriver();
                 break;
@@ -56,16 +54,9 @@ public class DriverFactory {
             case OPERA:
                 driver = new OperaDriverManager().createDriver();
                 break;
-            case IE:
-                driver = new IEDriverManager().createDriver();
-                break;
             default:
-                throw new BrowserNotSupportedException(browser + " is not recognized!");
+                throw new BrowserNotSupportedException(browser + "is not supported!");
         }
         return driver;
-    }
-
-    public enum BrowserList {
-        CHROME, FIREFOX, EDGE, SAFARI, OPERA, IE;
     }
 }
