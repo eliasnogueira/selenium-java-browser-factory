@@ -25,12 +25,10 @@
 package com.eliasnogueira.e2e;
 
 import com.eliasnogueira.BaseWeb;
-import com.eliasnogueira.driver.config.Configuration;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BookRoomWebTest extends BaseWeb {
 
