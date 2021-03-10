@@ -21,8 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.eliasnogueira.driver.config;
+package com.eliasnogueira.config;
 
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.LoadPolicy;
@@ -30,8 +29,9 @@ import org.aeonbits.owner.Config.LoadType;
 
 @LoadPolicy(LoadType.MERGE)
 @Config.Sources({
-    "system:properties",
-    "classpath:general.properties"})
+        "system:properties",
+        "classpath:general.properties",
+        "classpath:grid.properties"})
 public interface Configuration extends Config {
 
     @Key("target")
@@ -40,6 +40,15 @@ public interface Configuration extends Config {
     @Key("browser")
     String browser();
 
+    @Key("headless")
+    Boolean headless();
+
     @Key("url.base")
     String url();
+
+    @Key("grid.url")
+    String gridUrl();
+
+    @Key("grid.port")
+    String gridPort();
 }
