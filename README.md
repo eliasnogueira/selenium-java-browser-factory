@@ -2,6 +2,19 @@
 
 Don't forget to give this project a ⭐
 
+* [Introduction](#introduction)
+* [Technologies and Libraries](#technologies-and-libraries)
+* [Technical explanation](#technical-explanation)
+  * [DriverFactory](#driverFactory)
+  * [BrowserFactory](#browserFactory)
+    * [local browser instance creation](#local-browser-instance-creation)
+    * [remote browser instance creation](#remote-browser-instance-creation)
+* [Explaining the usage scenarios](#explaining-the-usage-scenarios)
+  * [Local execution](#local-execution)
+  * [Remote execution](#remote-execution)
+
+## Introduction
+
 This project shows how you can use the Factory design pattern to create different browsers using Selenium WebDriver 
 for the web test automation.
 
