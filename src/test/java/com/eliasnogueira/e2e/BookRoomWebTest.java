@@ -28,13 +28,14 @@ import com.eliasnogueira.BaseWeb;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import static com.eliasnogueira.driver.config.ConfigurationManager.configuration;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BookRoomWebTest extends BaseWeb {
 
     @Test
     void bookARoom() {
-        driver.navigate().to(configuration.url() +
+        driver.navigate().to(configuration().url() +
                 "how-to-create-lean-test-automation-architecture-for-web-using-java-libraries");
 
         assertThat(driver.findElement(By.cssSelector(".hestia-title.title-in-content")).getText()).
