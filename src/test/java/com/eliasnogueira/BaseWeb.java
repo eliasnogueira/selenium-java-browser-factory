@@ -24,7 +24,6 @@
 
 package com.eliasnogueira;
 
-import com.eliasnogueira.driver.config.Configuration;
 import com.eliasnogueira.driver.factory.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,12 +34,14 @@ import static com.eliasnogueira.driver.config.ConfigurationManager.configuration
 public class BaseWeb {
 
     protected WebDriver driver;
-    protected Configuration configuration;
 
     @BeforeEach
     public void preCondition() {
-        driver = new DriverFactory().createInstance(configuration().browser());
-        driver.get(configuration.url());
+        String browserToUse = configuration().browser();
+
+        driver = new DriverFactory().createInstance(browserToUse);
+
+        driver.get(configuration().url());
     }
 
     @AfterEach
