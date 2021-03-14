@@ -30,12 +30,9 @@ import org.aeonbits.owner.Config.LoadType;
 
 @LoadPolicy(LoadType.MERGE)
 @Config.Sources({
-    "system:properties",
-    "classpath:general.properties"})
+        "system:properties",
+        "classpath:general.properties"})
 public interface Configuration extends Config {
-
-    @Key("target")
-    String target();
 
     @Key("browser")
     String browser();
