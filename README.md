@@ -6,12 +6,8 @@ Don't forget to give this project a ⭐
 * [Technologies and Libraries](#technologies-and-libraries)
 * [Technical explanation](#technical-explanation)
     * [DriverFactory](#driverFactory)
-    * [BrowserFactory](#browserFactory)
-        * [local browser instance creation](#local-browser-instance-creation)
-        * [remote browser instance creation](#remote-browser-instance-creation)
+    * [Driver Manager classes](#driver-manager-classes)
 * [Explaining the usage scenarios](#explaining-the-usage-scenarios)
-    * [Local execution](#local-execution)
-    * [Remote execution](#remote-execution)
 
 ## Introduction
 
