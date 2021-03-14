@@ -24,14 +24,14 @@
 
 package com.eliasnogueira.driver.factory.manager;
 
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.factory.Factory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 import static io.github.bonigarcia.wdm.config.DriverManagerType.EDGE;
 
-public class EdgeDriverManager implements DriverManager {
+public class EdgeDriverManager implements Factory {
 
     @Override
     public WebDriver createDriver() {

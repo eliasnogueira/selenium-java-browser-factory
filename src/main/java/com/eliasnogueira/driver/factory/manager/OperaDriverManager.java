@@ -24,14 +24,14 @@
 
 package com.eliasnogueira.driver.factory.manager;
 
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.factory.Factory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
 import static io.github.bonigarcia.wdm.config.DriverManagerType.OPERA;
 
-public class OperaDriverManager implements DriverManager {
+public class OperaDriverManager implements Factory {
 
     @Override
     public WebDriver createDriver() {

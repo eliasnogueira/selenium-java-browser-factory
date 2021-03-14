@@ -24,14 +24,14 @@
 
 package com.eliasnogueira.driver.factory.manager;
 
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.factory.Factory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static io.github.bonigarcia.wdm.config.DriverManagerType.CHROME;
 
-public class ChromeDriverManager implements DriverManager {
+public class ChromeDriverManager implements Factory {
 
     @Override
     public WebDriver createDriver() {

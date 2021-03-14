@@ -25,7 +25,7 @@
 package com.eliasnogueira.driver.factory.manager;
 
 import com.eliasnogueira.driver.exceptions.BrowserNotSupportedException;
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.factory.Factory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -33,7 +33,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import static io.github.bonigarcia.wdm.config.DriverManagerType.IEXPLORER;
 import static org.apache.commons.lang3.SystemUtils.*;
 
-public class IEDriverManager implements DriverManager {
+public class IEDriverManager implements Factory {
 
     @Override
     public WebDriver createDriver() {

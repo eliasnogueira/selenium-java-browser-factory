@@ -25,7 +25,7 @@
 package com.eliasnogueira.driver.factory.manager;
 
 import com.eliasnogueira.driver.exceptions.BrowserNotSupportedException;
-import com.eliasnogueira.driver.factory.DriverManager;
+import com.eliasnogueira.driver.factory.Factory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -33,7 +33,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import static io.github.bonigarcia.wdm.config.DriverManagerType.SAFARI;
 import static org.apache.commons.lang3.SystemUtils.*;
 
-public class SafariDriverManager implements DriverManager {
+public class SafariDriverManager implements Factory {
 
     @Override
     public WebDriver createDriver() {

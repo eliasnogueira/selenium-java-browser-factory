@@ -26,7 +26,7 @@ package com.eliasnogueira.driver.factory;
 
 import org.openqa.selenium.WebDriver;
 
-public interface DriverManager {
+public interface Factory {
 
     WebDriver createDriver();
 }
