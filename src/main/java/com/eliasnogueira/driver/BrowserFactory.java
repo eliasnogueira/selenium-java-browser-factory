@@ -111,26 +111,6 @@ public enum BrowserFactory {
 
             return operaOptions;
         }
-    }, IE {
-        @Override
-        public WebDriver createDriver() {
-            WebDriverManager.getInstance(DriverManagerType.IEXPLORER).setup();
-
-            return new InternetExplorerDriver(getOptions());
-        }
-
-        @Override
-        public InternetExplorerOptions getOptions() {
-            InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
-            internetExplorerOptions.ignoreZoomSettings();
-            internetExplorerOptions.takeFullPageScreenshot();
-            internetExplorerOptions.introduceFlakinessByIgnoringSecurityDomains();
-
-            if (TRUE.equals(configuration().headless()))
-                throw new HeadlessNotSupportedException();
-
-            return internetExplorerOptions;
-        }
     };
 
     private static final String START_MAXIMIZED = "--start-maximized";
