@@ -48,7 +48,7 @@ public class RemoteDriverFactory implements IDriverFactory {
     @Override
     public WebDriver createInstance(String browser) {
         MutableCapabilities capability;
-        Browsers browserToCreate = Browsers.valueOf(browser.toUpperCase());
+        BrowserList browserToCreate = BrowserList.valueOf(browser.toUpperCase());
 
         switch (browserToCreate) {
             case CHROME:

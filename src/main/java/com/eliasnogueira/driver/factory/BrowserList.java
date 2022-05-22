@@ -24,6 +24,6 @@
 
 package com.eliasnogueira.driver.factory;
 
-public enum Browsers {
+public enum BrowserList {
     CHROME, FIREFOX, EDGE, SAFARI, OPERA
 }

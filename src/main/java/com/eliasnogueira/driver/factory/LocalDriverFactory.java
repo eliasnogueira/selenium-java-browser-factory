@@ -38,7 +38,7 @@ public class LocalDriverFactory implements IDriverFactory {
     @Override
     public WebDriver createInstance(String browser) {
         WebDriver driver;
-        Browsers browserToCreate = Browsers.valueOf(browser.toUpperCase());
+        BrowserList browserToCreate = BrowserList.valueOf(browser.toUpperCase());
 
         switch (browserToCreate) {
             case CHROME:
