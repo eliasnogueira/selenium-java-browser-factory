@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2021 Elias Nogueira
+ * Copyright (c) 2022 Elias Nogueira
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -63,9 +63,5 @@ public class DriverFactory {
                 throw new BrowserNotSupportedException(browser);
         }
         return driver;
-    }
-
-    public enum BrowserList {
-        CHROME, FIREFOX, EDGE, SAFARI, OPERA, IE
     }
 }
