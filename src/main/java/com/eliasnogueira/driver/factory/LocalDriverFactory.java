@@ -24,6 +24,7 @@
 
 package com.eliasnogueira.driver.factory;
 
+import com.eliasnogueira.driver.IDriverFactory;
 import com.eliasnogueira.driver.factory.manager.ChromeDriverManager;
 import com.eliasnogueira.driver.factory.manager.EdgeDriverManager;
 import com.eliasnogueira.driver.factory.manager.FirefoxDriverManager;
@@ -32,8 +33,9 @@ import com.eliasnogueira.driver.factory.manager.SafariDriverManager;
 import com.eliasnogueira.exceptions.BrowserNotSupportedException;
 import org.openqa.selenium.WebDriver;
 
-public class LocalDriverFactory {
+public class LocalDriverFactory implements IDriverFactory {
 
+    @Override
     public WebDriver createInstance(String browser) {
         WebDriver driver;
         Browsers browserToCreate = Browsers.valueOf(browser.toUpperCase());

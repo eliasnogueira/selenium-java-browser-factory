@@ -31,8 +31,9 @@ import org.openqa.selenium.WebDriver;
 
 import static com.eliasnogueira.config.ConfigurationManager.configuration;
 
-public class DriverFactory {
+public class DriverFactory implements IDriverFactory {
 
+    @Override
     public WebDriver createInstance(String browser) {
         Target target = Target.valueOf(configuration().target().toUpperCase());
         WebDriver webdriver;

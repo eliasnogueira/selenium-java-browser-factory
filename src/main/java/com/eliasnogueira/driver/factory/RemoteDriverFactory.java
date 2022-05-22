@@ -24,6 +24,7 @@
 
 package com.eliasnogueira.driver.factory;
 
+import com.eliasnogueira.driver.IDriverFactory;
 import com.eliasnogueira.driver.factory.manager.ChromeDriverManager;
 import com.eliasnogueira.driver.factory.manager.FirefoxDriverManager;
 import com.eliasnogueira.driver.factory.manager.EdgeDriverManager;
@@ -40,10 +41,11 @@ import java.util.logging.Logger;
 
 import static com.eliasnogueira.config.ConfigurationManager.configuration;
 
-public class RemoteDriverFactory {
+public class RemoteDriverFactory implements IDriverFactory {
 
     private static final Logger logger = Logger.getLogger("com.eliasnogueira");
 
+    @Override
     public WebDriver createInstance(String browser) {
         MutableCapabilities capability;
         Browsers browserToCreate = Browsers.valueOf(browser.toUpperCase());
