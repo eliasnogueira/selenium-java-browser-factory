@@ -28,7 +28,6 @@ import com.eliasnogueira.driver.exceptions.BrowserNotSupportedException;
 import com.eliasnogueira.driver.factory.manager.ChromeDriverManager;
 import com.eliasnogueira.driver.factory.manager.EdgeDriverManager;
 import com.eliasnogueira.driver.factory.manager.FirefoxDriverManager;
-import com.eliasnogueira.driver.factory.manager.OperaDriverManager;
 import com.eliasnogueira.driver.factory.manager.SafariDriverManager;
 import org.openqa.selenium.WebDriver;
 
@@ -51,9 +50,6 @@ public class DriverFactory {
                 break;
             case SAFARI:
                 driver = new SafariDriverManager().createDriver();
-                break;
-            case OPERA:
-                driver = new OperaDriverManager().createDriver();
                 break;
             default:
                 throw new BrowserNotSupportedException(browser);
