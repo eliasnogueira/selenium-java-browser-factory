@@ -25,5 +25,5 @@
 package com.eliasnogueira.driver.factory;
 
 public enum BrowserList {
-    CHROME, FIREFOX, EDGE, SAFARI, OPERA
+    CHROME, FIREFOX, EDGE, SAFARI
 }

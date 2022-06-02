@@ -29,7 +29,6 @@ import com.eliasnogueira.driver.factory.manager.ChromeDriverManager;
 import com.eliasnogueira.driver.factory.manager.FirefoxDriverManager;
 import com.eliasnogueira.driver.factory.manager.EdgeDriverManager;
 import com.eliasnogueira.driver.factory.manager.SafariDriverManager;
-import com.eliasnogueira.driver.factory.manager.OperaDriverManager;
 import com.eliasnogueira.exceptions.BrowserNotSupportedException;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
@@ -62,9 +61,6 @@ public class RemoteDriverFactory implements IDriverFactory {
                 break;
             case SAFARI:
                 capability = new SafariDriverManager().getOptions();
-                break;
-            case OPERA:
-                capability = new OperaDriverManager().getOptions();
                 break;
             default:
                 throw new BrowserNotSupportedException(browser + "is not supported!");
