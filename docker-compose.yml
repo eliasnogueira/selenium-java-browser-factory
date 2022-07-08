@@ -1,10 +1,7 @@
-# To execute this docker-compose yml file use `docker-compose -f docker-compose-v3-full-grid.yml up`
-# Add the `-d` flag at the end for detached execution
-# To stop the execution, hit Ctrl+C, and then `docker-compose -f docker-compose-v3-full-grid.yml down`
 version: "3"
 services:
   selenium-event-bus:
-    image: selenium/event-bus:4.2.1-20220531
+    image: selenium/event-bus:latest
     container_name: selenium-event-bus
     ports:
       - "4442:4442"
@@ -12,7 +9,7 @@ services:
       - "5557:5557"
 
   selenium-sessions:
-    image: selenium/sessions:4.2.1-20220531
+    image: selenium/sessions:latest
     container_name: selenium-sessions
     ports:
       - "5556:5556"
@@ -23,9 +20,9 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
 
-  selenium-session-queuer:
-    image: selenium/session-queuer:4.2.1-20220531
-    container_name: selenium-session-queuer
+  selenium-session-queue:
+    image: selenium/session-queue:latest
+    container_name: selenium-session-queue
     ports:
       - "5559:5559"
     depends_on:
@@ -36,88 +33,66 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
 
   selenium-distributor:
-    image: selenium/distributor:4.2.1-20220531
+    image: selenium/distributor:latest
     container_name: selenium-distributor
     ports:
       - "5553:5553"
     depends_on:
       - selenium-event-bus
       - selenium-sessions
-      - selenium-session-queuer
+      - selenium-session-queue
     environment:
       - SE_EVENT_BUS_HOST=selenium-event-bus
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_SESSIONS_MAP_HOST=selenium-sessions
       - SE_SESSIONS_MAP_PORT=5556
-      - SE_SESSION_QUEUER_HOST=selenium-session-queuer
-      - SE_SESSION_QUEUER_PORT=5559
+      - SE_SESSION_QUEUE_HOST=selenium-session-queue
+      - SE_SESSION_QUEUE_PORT=5559
 
   selenium-router:
-    image: selenium/router:4.2.1-20220531
+    image: selenium/router:latest
     container_name: selenium-router
     ports:
       - "4444:4444"
     depends_on:
       - selenium-distributor
       - selenium-sessions
-      - selenium-session-queuer
+      - selenium-session-queue
     environment:
       - SE_DISTRIBUTOR_HOST=selenium-distributor
       - SE_DISTRIBUTOR_PORT=5553
       - SE_SESSIONS_MAP_HOST=selenium-sessions
       - SE_SESSIONS_MAP_PORT=5556
-      - SE_SESSION_QUEUER_HOST=selenium-session-queuer
-      - SE_SESSION_QUEUER_PORT=5559
+      - SE_SESSION_QUEUE_HOST=selenium-session-queue
+      - SE_SESSION_QUEUE_PORT=5559
 
   chrome:
-    image: selenium/node-chrome:4.2.1-20220531
-    volumes:
-      - /dev/shm:/dev/shm
+    image: selenium/node-chrome:latest
+    shm_size: 2gb
     depends_on:
       - selenium-event-bus
     environment:
       - SE_EVENT_BUS_HOST=selenium-event-bus
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-    ports:
-      - "6900:5900"
 
   edge:
-    image: selenium/node-edge:4.2.1-20220531
-    volumes:
-      - /dev/shm:/dev/shm
+    image: selenium/node-edge:latest
+    shm_size: 2gb
     depends_on:
       - selenium-event-bus
     environment:
       - SE_EVENT_BUS_HOST=selenium-event-bus
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-    ports:
-      - "6901:5900"
 
   firefox:
-    image: selenium/node-firefox:4.2.1-20220531
-    volumes:
-      - /dev/shm:/dev/shm
+    image: selenium/node-firefox:latest
+    shm_size: 2gb
     depends_on:
       - selenium-event-bus
     environment:
       - SE_EVENT_BUS_HOST=selenium-event-bus
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-    ports:
-      - "6902:5900"
-
-  opera:
-    image: selenium/node-opera:4.2.1-20220531
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - selenium-event-bus
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-event-bus
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-    ports:
-      - "6903:5900"
