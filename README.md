@@ -18,6 +18,8 @@ Don't forget to give this project a ⭐
 This project shows how you can use the Factory design pattern to create different browsers using Selenium WebDriver 
 for the web test automation.
 
+You can also find an explanation about this project implementation at http://www.eliasnogueira.com/the-best-way-to-create-browser-instances-using-the-factory-pattern-java-and-selenium-webdriver/
+
 This branch has the final recommendation.
 If you don't know how to use it I would recommend you to take a look at the following branches:
 * [basic-example](https://github.com/eliasnogueira/selenium-java-browser-factory/tree/basic-example): shows a basic and local implementation of the Factory design pattern
