@@ -26,7 +26,6 @@ package com.eliasnogueira.driver;
 
 import com.eliasnogueira.driver.factory.LocalDriverFactory;
 import com.eliasnogueira.driver.factory.RemoteDriverFactory;
-import com.eliasnogueira.exceptions.TargetNotValidException;
 import org.openqa.selenium.WebDriver;
 
 import static com.eliasnogueira.config.ConfigurationManager.configuration;
@@ -36,19 +35,11 @@ public class DriverFactory implements IDriverFactory {
     @Override
     public WebDriver createInstance(String browser) {
         Target target = Target.valueOf(configuration().target().toUpperCase());
-        WebDriver webdriver;
 
-        switch (target) {
-            case LOCAL:
-                webdriver = new LocalDriverFactory().createInstance(browser);
-                break;
-            case REMOTE:
-                webdriver = new RemoteDriverFactory().createInstance(browser);
-                break;
-            default:
-                throw new TargetNotValidException(target.toString());
-        }
-        return webdriver;
+        return switch (target) {
+            case LOCAL -> new LocalDriverFactory().createInstance(browser);
+            case REMOTE -> new RemoteDriverFactory().createInstance(browser);
+        };
     }
 
     enum Target {

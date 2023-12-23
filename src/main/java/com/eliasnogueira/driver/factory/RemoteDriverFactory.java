@@ -29,12 +29,11 @@ import com.eliasnogueira.driver.factory.manager.ChromeDriverManager;
 import com.eliasnogueira.driver.factory.manager.FirefoxDriverManager;
 import com.eliasnogueira.driver.factory.manager.EdgeDriverManager;
 import com.eliasnogueira.driver.factory.manager.SafariDriverManager;
-import com.eliasnogueira.exceptions.BrowserNotSupportedException;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,22 +48,12 @@ public class RemoteDriverFactory implements IDriverFactory {
         MutableCapabilities capability;
         BrowserList browserToCreate = BrowserList.valueOf(browser.toUpperCase());
 
-        switch (browserToCreate) {
-            case CHROME:
-                capability = new ChromeDriverManager().getOptions();
-                break;
-            case FIREFOX:
-                capability = new FirefoxDriverManager().getOptions();
-                break;
-            case EDGE:
-                capability = new EdgeDriverManager().getOptions();
-                break;
-            case SAFARI:
-                capability = new SafariDriverManager().getOptions();
-                break;
-            default:
-                throw new BrowserNotSupportedException(browser + "is not supported!");
-        }
+        capability = switch (browserToCreate) {
+            case CHROME -> new ChromeDriverManager().getOptions();
+            case FIREFOX -> new FirefoxDriverManager().getOptions();
+            case EDGE -> new EdgeDriverManager().getOptions();
+            case SAFARI -> new SafariDriverManager().getOptions();
+        };
 
         return createRemoteInstance(capability);
     }
@@ -74,7 +63,7 @@ public class RemoteDriverFactory implements IDriverFactory {
         try {
             String gridURL = String.format("http://%s:%s", configuration().gridUrl(), configuration().gridPort());
 
-            remoteWebDriver = new RemoteWebDriver(new URL(gridURL), capability);
+            remoteWebDriver = new RemoteWebDriver(URI.create(gridURL).toURL(), capability);
         } catch (java.net.MalformedURLException e) {
             logger.log(Level.SEVERE, "Grid URL is invalid or Grid is not available");
             logger.log(Level.SEVERE, String.format("Browser: %s", capability.getBrowserName()), e);
