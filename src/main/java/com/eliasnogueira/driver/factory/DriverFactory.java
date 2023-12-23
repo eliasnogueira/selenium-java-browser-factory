@@ -24,7 +24,6 @@
 
 package com.eliasnogueira.driver.factory;
 
-import com.eliasnogueira.driver.exceptions.BrowserNotSupportedException;
 import com.eliasnogueira.driver.factory.manager.ChromeDriverManager;
 import com.eliasnogueira.driver.factory.manager.EdgeDriverManager;
 import com.eliasnogueira.driver.factory.manager.FirefoxDriverManager;
@@ -37,23 +36,12 @@ public class DriverFactory {
         WebDriver driver;
         BrowserList browserType = BrowserList.valueOf(browser.toUpperCase());
 
-        switch (browserType) {
-
-            case CHROME:
-                driver = new ChromeDriverManager().createDriver();
-                break;
-            case FIREFOX:
-                driver = new FirefoxDriverManager().createDriver();
-                break;
-            case EDGE:
-                driver = new EdgeDriverManager().createDriver();
-                break;
-            case SAFARI:
-                driver = new SafariDriverManager().createDriver();
-                break;
-            default:
-                throw new BrowserNotSupportedException(browser);
-        }
+        driver = switch (browserType) {
+            case CHROME -> new ChromeDriverManager().createDriver();
+            case FIREFOX -> new FirefoxDriverManager().createDriver();
+            case EDGE -> new EdgeDriverManager().createDriver();
+            case SAFARI -> new SafariDriverManager().createDriver();
+        };
         return driver;
     }
 }

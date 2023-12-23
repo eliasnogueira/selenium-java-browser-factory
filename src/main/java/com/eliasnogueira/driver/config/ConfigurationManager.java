@@ -35,4 +35,3 @@ public class ConfigurationManager {
         return getOrCreate(Configuration.class);
     }
 }
-
