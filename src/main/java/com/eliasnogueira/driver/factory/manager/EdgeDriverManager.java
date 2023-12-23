@@ -46,7 +46,7 @@ public class EdgeDriverManager implements IDriverManager<EdgeOptions> {
     public EdgeOptions getOptions() {
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("--start-maximized");
-        edgeOptions.setHeadless(configuration().headless());
+        if (configuration().headless()) edgeOptions.addArguments("-headless");
 
         return edgeOptions;
     }

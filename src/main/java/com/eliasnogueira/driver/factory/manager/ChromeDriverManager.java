@@ -48,7 +48,7 @@ public class ChromeDriverManager implements IDriverManager<ChromeOptions> {
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--disable-infobars");
         chromeOptions.addArguments("--disable-notifications");
-        chromeOptions.setHeadless(configuration().headless());
+        if (configuration().headless()) chromeOptions.addArguments("--headless=new");
 
         return chromeOptions;
     }

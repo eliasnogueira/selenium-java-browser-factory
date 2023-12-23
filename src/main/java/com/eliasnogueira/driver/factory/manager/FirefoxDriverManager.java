@@ -46,7 +46,7 @@ public class FirefoxDriverManager implements IDriverManager<FirefoxOptions> {
     public FirefoxOptions getOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.addArguments("--start-maximized");
-        firefoxOptions.setHeadless(configuration().headless());
+        if (configuration().headless()) firefoxOptions.addArguments("-headless");
 
         return firefoxOptions;
     }
