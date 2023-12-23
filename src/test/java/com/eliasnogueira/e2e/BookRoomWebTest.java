@@ -37,7 +37,7 @@ class BookRoomWebTest extends BaseWeb {
         driver.navigate().to(configuration.url() +
                 "how-to-create-lean-test-automation-architecture-for-web-using-java-libraries");
 
-        assertThat(driver.findElement(By.cssSelector(".hestia-title.title-in-content")).getText()).
+        assertThat(driver.findElement(By.cssSelector("#Subheader > div h1")).getText()).
                 isEqualTo("How to create Lean Test Automation Architecture for Web using Java libraries");
     }
 }
