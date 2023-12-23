@@ -57,7 +57,8 @@ public enum BrowserFactory {
             chromeOptions.addArguments(START_MAXIMIZED);
             chromeOptions.addArguments("--disable-infobars");
             chromeOptions.addArguments("--disable-notifications");
-            chromeOptions.setHeadless(configuration().headless());
+
+            if (configuration().headless()) chromeOptions.addArguments(CHROME_HEADLESS);
 
             return chromeOptions;
         }
@@ -73,7 +74,7 @@ public enum BrowserFactory {
         public FirefoxOptions getOptions() {
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             firefoxOptions.addArguments(START_MAXIMIZED);
-            firefoxOptions.setHeadless(configuration().headless());
+            if (configuration().headless()) firefoxOptions.addArguments(GENERIC_HEADLESS);
 
             return firefoxOptions;
         }
@@ -89,7 +90,7 @@ public enum BrowserFactory {
         public EdgeOptions getOptions() {
             EdgeOptions edgeOptions = new EdgeOptions();
             edgeOptions.addArguments(START_MAXIMIZED);
-            edgeOptions.setHeadless(configuration().headless());
+            if (configuration().headless()) edgeOptions.addArguments(GENERIC_HEADLESS);
 
             return edgeOptions;
         }
@@ -114,6 +115,8 @@ public enum BrowserFactory {
     };
 
     private static final String START_MAXIMIZED = "--start-maximized";
+    public static final String CHROME_HEADLESS = "--headless=new";
+    public static final String GENERIC_HEADLESS = "-headless";
 
     public abstract WebDriver createDriver();
     public abstract AbstractDriverOptions<?> getOptions();
