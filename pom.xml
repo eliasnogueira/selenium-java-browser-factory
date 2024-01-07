@@ -12,16 +12,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java-compiler.version>21</java-compiler.version>
-        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
 
         <selenium.version>4.16.1</selenium.version>
         <junit.version>5.10.1</junit.version>
-        <assertj.version>3.24.2</assertj.version>
-        <webdrivermanager.version>5.6.2</webdrivermanager.version>
+        <assertj.version>3.25.1</assertj.version>
+        <webdrivermanager.version>5.6.3</webdrivermanager.version>
         <owner.version>1.0.12</owner.version>
 
         <!-- enforce security updates -->
-        <jackson-databind.version>2.16.0</jackson-databind.version>
+        <jackson-databind.version>2.16.1</jackson-databind.version>
     </properties>
 
     <dependencies>

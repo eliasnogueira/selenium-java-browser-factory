@@ -22,7 +22,7 @@ You can see the other examples in the following branches
 
 ## Technologies and Libraries
 
-* [Java 11](https://openjdk.java.net/projects/jdk/11/) as the programming language
+* [Java 21](https://openjdk.java.net/projects/jdk/21/) as the programming language
 * [JUnit 5](https://junit.org/junit5/) to support the test creation
 * [Selenium WebDriver](https://www.selenium.dev/) as the web browser automation framework using the Java binding
 * [AssertJ](https://joel-costigliola.github.io/assertj/) as the fluent assertion library
