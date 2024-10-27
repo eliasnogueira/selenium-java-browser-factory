@@ -6,22 +6,18 @@
 
     <groupId>com.eliasnogueira</groupId>
     <artifactId>selenium-java-browser-factory</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2</version>
 
     <properties>
+        <java-compiler.version>23</java-compiler.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java-compiler.version>21</java-compiler.version>
-        <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
 
-        <selenium.version>4.16.1</selenium.version>
-        <junit.version>5.10.1</junit.version>
-        <assertj.version>3.25.1</assertj.version>
-        <webdrivermanager.version>5.6.3</webdrivermanager.version>
+        <selenium.version>4.25.0</selenium.version>
+        <junit.version>5.11.3</junit.version>
+        <assertj.version>3.26.3</assertj.version>
         <owner.version>1.0.12</owner.version>
-
-        <!-- enforce security updates -->
-        <jackson-databind.version>2.16.1</jackson-databind.version>
     </properties>
 
     <dependencies>
@@ -48,26 +44,6 @@
             <artifactId>owner</artifactId>
             <version>${owner.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.fasterxml.jackson.core</groupId>
-                    <artifactId>jackson-databind</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- enforce security updates -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson-databind.version}</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -77,8 +53,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java-compiler.version}</source>
-                    <target>${java-compiler.version}</target>
+                    <release>${java-compiler.version}</release>
                 </configuration>
             </plugin>
         </plugins>

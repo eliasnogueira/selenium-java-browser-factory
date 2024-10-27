@@ -25,8 +25,6 @@
 package com.eliasnogueira.driver;
 
 import com.eliasnogueira.exceptions.HeadlessNotSupportedException;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -46,8 +44,6 @@ public enum BrowserFactory {
     CHROME {
         @Override
         public WebDriver createDriver() {
-            WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
-
             return new ChromeDriver(getOptions());
         }
 
@@ -65,8 +61,6 @@ public enum BrowserFactory {
     }, FIREFOX {
         @Override
         public WebDriver createDriver() {
-            WebDriverManager.getInstance(DriverManagerType.FIREFOX).setup();
-
             return new FirefoxDriver(getOptions());
         }
 
@@ -81,8 +75,6 @@ public enum BrowserFactory {
     }, EDGE {
         @Override
         public WebDriver createDriver() {
-            WebDriverManager.getInstance(DriverManagerType.EDGE).setup();
-
             return new EdgeDriver(getOptions());
         }
 
@@ -97,8 +89,6 @@ public enum BrowserFactory {
     }, SAFARI {
         @Override
         public WebDriver createDriver() {
-            WebDriverManager.getInstance(DriverManagerType.SAFARI).setup();
-
             return new SafariDriver(getOptions());
         }
 
@@ -119,5 +109,6 @@ public enum BrowserFactory {
     public static final String GENERIC_HEADLESS = "-headless";
 
     public abstract WebDriver createDriver();
+
     public abstract AbstractDriverOptions<?> getOptions();
 }
